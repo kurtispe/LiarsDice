@@ -29,7 +29,7 @@ namespace LiarsDice.Library.Model
             get{ return maxDigit; }
         }
 
-        public void Roll()
+        public void Roll() //this is how we roll
         {
             int rng = RNG.Next(1, MaxDigit);
             value = rng;
