@@ -19,7 +19,6 @@ namespace LiarsDice.Library.Model
             digit = d;
         }
 
-
         private int weight;
         public int Weight
         {
