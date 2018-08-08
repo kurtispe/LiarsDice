@@ -40,5 +40,17 @@ namespace LiarsDice.Test
             Assert.False(bit);
             Assert.True(sut.Dice.Count == sut.DieCount);
         }
+        [Fact]
+        public void Test_Player_PlaceBet()
+        {
+            sut.RollDice();
+            sut.PlaceBet(3, 4);
+            var exp = sut.Bet.Digit;
+            var exp2 = sut.Bet.Weight;
+
+            Assert.True(exp >= 0 & exp < sut.Dice[0].MaxDigit);
+            sut.PlaceBet(3, 99);
+            Assert.True(sut.Bet.Digit == 1);
+        }
     }
 }

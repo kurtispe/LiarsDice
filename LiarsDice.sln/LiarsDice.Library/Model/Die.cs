@@ -6,23 +6,32 @@ namespace LiarsDice.Library.Model
 {
     public class Die
     {
-        public Die()
+        public Die() : this(6)
+        {
+           
+        }
+        public Die(int md)
         {
             value = 0;
             RNG = new Random();
+            maxDigit = md + 1;
         }
 
+        Random RNG;
         private int value;
         public int Value
         {
             get {return value;}
         }
-
-        Random RNG; 
+        private int maxDigit;
+        public int MaxDigit
+        {
+            get{ return maxDigit; }
+        }
 
         public void Roll()
         {
-            int rng = RNG.Next(1, 7);
+            int rng = RNG.Next(1, MaxDigit);
             value = rng;
         }
     }

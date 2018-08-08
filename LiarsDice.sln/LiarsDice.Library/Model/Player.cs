@@ -18,6 +18,7 @@ namespace LiarsDice.Library.Model
             name = n;
             DieCount = d;
             Dice = new List<Die>();
+            MaxDie = 6;
         }
 
         private string name;
@@ -26,18 +27,34 @@ namespace LiarsDice.Library.Model
             get { return name;}
         }
         public int DieCount;
+        public int MaxDie;
         public List<Die> Dice;
 
-        public void RollDice()
+        private Bet bet;
+        public Bet Bet
+        {
+            get {return bet;}
+        }
+
+        public void RollDice() //populates dice of digits = MaxDie
         {
             int n = 0;
             do
             {
-                var die = new Die();
+                var die = new Die(MaxDie);
                 die.Roll();
                 Dice.Add(die);
                 n++;
             } while (n < DieCount);
+        }
+
+        public void PlaceBet(int w, int d) //must have populated dice before use
+        {
+            if (d >= Dice[0].MaxDigit)
+            {
+                d = 1;
+            }
+            bet = new Bet(w,d);
         }
     }
 }

@@ -42,5 +42,23 @@ namespace LiarsDice.Test
             Assert.True(sut.Value.GetType() == typeof(int));
             Assert.True(exp == sut.Value);
         }
+
+        [Fact]
+        public void Test_Die_MaxDigit()
+        {
+            sut = new Die(20);
+            int maxRoll = 0;
+
+            for (int n = 0; n <= 500; n++)
+            {
+                sut.Roll();
+                var V = sut.Value;
+                if(V >= maxRoll)
+                {
+                    maxRoll = V;
+                } 
+            }
+            Assert.True(maxRoll == 20);
+        }
     }
 }
