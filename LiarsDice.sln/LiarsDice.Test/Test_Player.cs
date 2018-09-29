@@ -22,7 +22,7 @@ namespace LiarsDice.Test
             var dice = sut.DieCount;
             
             Assert.False(string.IsNullOrWhiteSpace(name));
-            Assert.True(dice.GetType() == typeof(int));
+            Assert.IsType<int>(dice);
         }
 
         [Fact]
@@ -48,9 +48,14 @@ namespace LiarsDice.Test
             var exp = sut.Bet.Digit;
             var exp2 = sut.Bet.Weight;
 
-            Assert.True(exp >= 0 & exp < sut.Dice[0].MaxDigit);
+            Assert.True(exp >= 0 && exp < sut.Dice[0].MaxDigit);
             sut.PlaceBet(3, 99);
             Assert.True(sut.Bet.Digit == 1);
+        }
+        [Fact]
+        public void Test_Player_ReturnInfo()
+        {
+            Assert.IsType<String>(sut.ReturnInfo());
         }
     }
 }

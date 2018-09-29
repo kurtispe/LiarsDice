@@ -19,7 +19,7 @@ namespace LiarsDice.Test
         public void Test_Bet_Weight()
         {
             var exp = sut.Weight;
-            Assert.True(sut.Weight.GetType() == typeof(int));
+            Assert.IsType<int>(sut.Weight);
             Assert.True(exp >= 1);
         }
 
@@ -27,7 +27,7 @@ namespace LiarsDice.Test
         public void Test_Bet_Digit()
         {
             var exp = sut.Digit;
-            Assert.True(sut.Digit.GetType() == typeof(int));
+            Assert.IsType<int>(sut.Digit);
             Assert.True(exp >= 1);
         }
     }

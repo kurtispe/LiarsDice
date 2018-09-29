@@ -6,6 +6,7 @@ namespace LiarsDice.Library.Model
 {
     public class Bet
     {
+        #region Constructor
         public Bet() : this(1)
         {
         }
@@ -18,7 +19,9 @@ namespace LiarsDice.Library.Model
             weight = w;
             digit = d;
         }
+        #endregion
 
+        #region Props
         private int weight;
         public int Weight
         {
@@ -29,5 +32,6 @@ namespace LiarsDice.Library.Model
         {
             get { return digit; }
         }
+        #endregion
     }
 }

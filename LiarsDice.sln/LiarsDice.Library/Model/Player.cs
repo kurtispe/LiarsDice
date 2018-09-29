@@ -1,42 +1,53 @@
-﻿using System;
+﻿using LiarsDice.Library.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Player
+    public class Player : Stats
     {
+        #region Constructor
         public Player() : this("genericName")
         {  
         }
-        public Player(string n) : this(n, 6)
+        public Player(string name) : this(name, 6)
         {
-            name = n;
+            Name = name;
         }
-        public Player(string n, int d)
+        public Player(string name, int numberOfDice) : this(name, numberOfDice, 6)
         {
-            name = n;
-            DieCount = d;
+            Name = name;
+            DieCount = numberOfDice;
+        }
+        public Player(string name, int numberOfDice, int maxDie)
+        {
             Dice = new List<Die>();
-            MaxDie = 6;
+            Score = 0;
+            StatLog = new int[maxDie];
+            DieCount = numberOfDice;
+            Name = name;
+            MaxDie = maxDie;
         }
 
-        private string name;
-        public string Name
-        {
-            get { return name;}
-        }
+        #endregion
+
+        #region Props
+        public string Name;
         public int DieCount;
+        public int Score;
         public int MaxDie;
         public List<Die> Dice;
-
+        public int[] StatLog;
         private Bet bet;
         public Bet Bet
         {
             get {return bet;}
         }
+        #endregion
 
-        public void RollDice() //populates dice of digits = MaxDie
+        #region Functions
+        public void RollDice() 
         {
             int n = 0;
             do
@@ -48,7 +59,7 @@ namespace LiarsDice.Library.Model
             } while (n < DieCount);
         }
 
-        public void PlaceBet(int w, int d) //must have populated dice before use
+        public void PlaceBet(int w, int d) 
         {
             if (d >= Dice[0].MaxDigit)
             {
@@ -56,5 +67,37 @@ namespace LiarsDice.Library.Model
             }
             bet = new Bet(w,d);
         }
+
+        #region Stats
+        public string ReturnInfo()
+        {
+            CalculateStats();
+            string returnable =  Name + " has: ";
+            int value = 1;
+            foreach (int n in StatLog)
+            {
+                returnable = returnable + n + " " + value + "'s,  ";
+                value++;
+            }
+            return returnable;
+        }
+        public void CalculateStats()
+        {
+            ZeroStat();
+            foreach (Die die in Dice)
+            {
+                StatLog[die.Value - 1] += 1;
+            }
+        }
+        public void ZeroStat()
+        {
+            for (int n = 0; n < StatLog.Length; n++)
+            {
+                StatLog[n] = 0;
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

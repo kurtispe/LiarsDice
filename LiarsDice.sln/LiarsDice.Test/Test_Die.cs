@@ -39,7 +39,7 @@ namespace LiarsDice.Test
         public void Test_Die_Value()
         {
             var exp = 0;
-            Assert.True(sut.Value.GetType() == typeof(int));
+            Assert.IsType<int>(sut.Value);
             Assert.True(exp == sut.Value);
         }
 
