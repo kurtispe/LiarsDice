@@ -27,9 +27,9 @@ namespace LiarsDice.Test
         {
             player.RollDice();
             sut.SaveAsync(player);
-            var result = sut.FindAsync<Player, Player>(player).Result;
+            var result = sut.FindAsync<Player>(player).Result;
             Assert.Equal(player.Name, result.Name);
-            var result2 = sut.FindAsync<Player>("player", 1).Result;
+            var result2 = sut.FindAsync<Player>(1).Result;
             Assert.Equal(player.Name, result2.Name);
         }
         [Fact]
@@ -39,8 +39,8 @@ namespace LiarsDice.Test
             sut.SaveAsync(player);
             sut.SaveAsync(new Player());
             sut.SaveAsync(new Player());
-            Assert.IsType<List<Player>>(sut.FindAllAsync<Player>("player").Result);
-            Assert.Equal(4, sut.FindAllAsync<Player>("player").Result.Count);
+            Assert.IsType<List<Player>>(sut.FindAllAsync<Player>().Result);
+            Assert.Equal(4, sut.FindAllAsync<Player>().Result.Count);
         }
     }
 }

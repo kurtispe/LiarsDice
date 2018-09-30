@@ -77,8 +77,9 @@ namespace LiarsDice.Data
             }
         }
 
-        public async Task<G> FindAsync<T,G>(T obj)where G: class where T : SaveHelper 
+        public async Task<G> FindAsync<G>(G findAble)where G: class 
         {
+            SaveHelper obj = findAble as SaveHelper;
             switch (obj.CaseID)
             {
                 case 0:
@@ -93,39 +94,42 @@ namespace LiarsDice.Data
                     return default(G);
             }
         }
-        public async Task<G> FindAsync<G>(string word, int id) where G : class
+        public async Task<G> FindAsync<G>(int id) where G : class
         {
-            switch (word)
+            var convertMe = Activator.CreateInstance(typeof(G)) as G;
+            SaveHelper type = convertMe as SaveHelper;
+            switch (type.CaseID)
             {
-                case "bet":
+                case 0:
                     return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case "die":
+                case 1:
                     return await CTX.Die.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case "game":
+                case 2:
                     return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case "player":
+                case 3:
                     return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
                 default:
                     return default(G);
             }
         }
-        public async Task<List<G>> FindAllAsync<G>(string word) where G : class
+        public async Task<List<G>> FindAllAsync<G>() where G : class
         {
-            switch (word)
+            var convertMe = Activator.CreateInstance(typeof(G)) as G;
+            SaveHelper type = convertMe as SaveHelper;
+            switch (type.CaseID)
             {
-                case "bet":
+                case 0:
                     return await CTX.Bet.ToListAsync() as List<G>;
-                case "die":
+                case 1:
                     return await CTX.Die.ToListAsync() as List<G>;
-                case "game":
+                case 2:
                     return await CTX.Game.ToListAsync() as List<G>;
-                case "player":
+                case 3:
                     return await CTX.Player.ToListAsync() as List<G>;
                 default:
                     return default(List<G>);
             }
         }
-
         #endregion
     }
 }
