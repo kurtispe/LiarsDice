@@ -8,8 +8,8 @@ namespace LiarsDice.Data.DataModels
 {
     public class Data_Die : Die, SaveHelper
     {
-        private int pk;
-        public int PrimeKey { get { return pk; } }
+        //private int pk;
+        public int PrimeKey { get; set;} 
         public int CaseID { get { return 1; } }
     }
 }

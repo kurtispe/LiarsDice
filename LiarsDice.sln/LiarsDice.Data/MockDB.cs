@@ -24,10 +24,10 @@ namespace LiarsDice.Data
 
         protected override void OnModelCreating(ModelBuilder modBuilder)
         {
-            modBuilder.Entity<Data_Player>().HasKey("PrimeKey");
-            modBuilder.Entity<Data_Bet>().HasKey("PrimeKey");
-            modBuilder.Entity<Data_Game>().HasKey("PrimeKey");
-            modBuilder.Entity<Data_Die>().HasKey("PrimeKey");
+            modBuilder.Entity<Player>().HasKey("PrimeKey");
+            modBuilder.Entity<Bet>().HasKey("PrimeKey");
+            modBuilder.Entity<Game>().HasKey("PrimeKey");
+            modBuilder.Entity<Die>().HasKey("PrimeKey");
         }
     }
 }

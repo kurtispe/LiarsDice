@@ -39,7 +39,8 @@ namespace LiarsDice.Library.Model
         private int[] StatLog;
         private float safeNumber;
         public float SafeNumber {get{ return safeNumber; }}
-       
+        private int PrimeKey;
+
         #endregion
 
         #region Functions

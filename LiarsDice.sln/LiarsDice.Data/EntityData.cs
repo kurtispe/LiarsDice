@@ -41,23 +41,21 @@ namespace LiarsDice.Data
                     CTX.Player.Add(obj as Data_Player);
                     await CTX.SaveChangesAsync();
                     break;
-                default:
-                    throw new TypeAccessException();
             }
         }
 
-        public async Task<G> FindAsync<T, G>(T obj) where G : class where T : SaveHelper 
+        public async Task<G> FindAsync<T,G>(T obj)where G: class where T : SaveHelper 
         {
             switch (obj.CaseID)
             {
                 case 0:
                     return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 case 1:
-                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
+                    return await CTX.Die.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 case 2:
-                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
+                    return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 case 3:
-                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
+                    return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 default:
                     return default(G);
             }

@@ -32,7 +32,7 @@ namespace LiarsDice.Library.Model
         {
             get { return digit; }
         }
-      
+        private int PrimeKey;
         #endregion
     }
 }

@@ -44,7 +44,7 @@ namespace LiarsDice.Library.Model
         {
             get {return bet;}
         }
-
+        private int PrimeKey;
         #endregion
 
         #region Functions
