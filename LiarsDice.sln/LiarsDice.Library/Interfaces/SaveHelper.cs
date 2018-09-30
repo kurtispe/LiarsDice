@@ -6,7 +6,7 @@ namespace LiarsDice.Library.Interfaces
 {
     public interface SaveHelper
     {
-         int CaseID { get; }
-         int PrimeKey { get; set; }
+         int CaseID {get;}
+         int PrimeKey {get; set;}
     }
 }

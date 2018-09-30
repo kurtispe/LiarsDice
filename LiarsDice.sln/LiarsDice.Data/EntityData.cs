@@ -13,8 +13,7 @@ namespace LiarsDice.Data
     {
         #region Constructor
         public EntityData()
-        {
-            
+        { 
         }
        
         private static  MockDB CTX = new MockDB();
@@ -26,21 +25,55 @@ namespace LiarsDice.Data
             switch (obj.CaseID)
             {
                 case 0:
-                    CTX.Bet.Add(obj as Bet);
-                    await CTX.SaveChangesAsync();
+                    try
+                    {
+                        CTX.Bet.Add(obj as Bet);
+                        await CTX.SaveChangesAsync();
+                    }
+                    catch (ArgumentException)
+                    {
+                        CTX.Bet.Update(obj as Bet);
+                        await CTX.SaveChangesAsync();
+                    }
                     break;
                 case 1:
-                    CTX.Die.Add(obj as Die);
-                    await CTX.SaveChangesAsync();
+                    try
+                    {
+                        CTX.Die.Add(obj as Die);
+                        await CTX.SaveChangesAsync();
+                    }
+                    catch (ArgumentException)
+                    {
+                        CTX.Die.Update(obj as Die);
+                        await CTX.SaveChangesAsync();
+                    }
                     break;
                 case 2:
-                    CTX.Game.Add(obj as Game);
-                    await CTX.SaveChangesAsync();
+                    try
+                    {
+                        CTX.Game.Add(obj as Game);
+                        await CTX.SaveChangesAsync();
+                    }
+                    catch (ArgumentException)
+                    {
+                        CTX.Game.Update(obj as Game);
+                        await CTX.SaveChangesAsync();
+                    }
                     break;
                 case 3:
-                    CTX.Player.Add(obj as Player);
-                    await CTX.SaveChangesAsync();
+                    try
+                    {
+                        CTX.Player.Add(obj as Player);
+                        await CTX.SaveChangesAsync();
+                    }
+                    catch (ArgumentException)
+                    {
+                        CTX.Player.Update(obj as Player);
+                        await CTX.SaveChangesAsync();
+                    }
                     break;
+                default:
+                    throw new TypeAccessException();
             }
         }
 
@@ -60,6 +93,39 @@ namespace LiarsDice.Data
                     return default(G);
             }
         }
+        public async Task<G> FindAsync<G>(string word, int id) where G : class
+        {
+            switch (word)
+            {
+                case "bet":
+                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
+                case "die":
+                    return await CTX.Die.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
+                case "game":
+                    return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
+                case "player":
+                    return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
+                default:
+                    return default(G);
+            }
+        }
+        public async Task<List<G>> FindAllAsync<G>(string word) where G : class
+        {
+            switch (word)
+            {
+                case "bet":
+                    return await CTX.Bet.ToListAsync() as List<G>;
+                case "die":
+                    return await CTX.Die.ToListAsync() as List<G>;
+                case "game":
+                    return await CTX.Game.ToListAsync() as List<G>;
+                case "player":
+                    return await CTX.Player.ToListAsync() as List<G>;
+                default:
+                    return default(List<G>);
+            }
+        }
+
         #endregion
     }
 }
