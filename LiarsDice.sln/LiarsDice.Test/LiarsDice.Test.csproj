@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LiarsDice.Data\LiarsDice.Data.csproj" />
     <ProjectReference Include="..\LiarsDice.Library\LiarsDice.Library.csproj" />
   </ItemGroup>
 

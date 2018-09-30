@@ -32,6 +32,7 @@ namespace LiarsDice.Library.Model
         {
             get { return digit; }
         }
+      
         #endregion
     }
 }

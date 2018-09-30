@@ -44,6 +44,7 @@ namespace LiarsDice.Library.Model
         {
             get {return bet;}
         }
+
         #endregion
 
         #region Functions

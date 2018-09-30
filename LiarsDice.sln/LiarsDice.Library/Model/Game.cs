@@ -38,8 +38,8 @@ namespace LiarsDice.Library.Model
         readonly int numberOfDicePerPlayerAtStart;
         private int[] StatLog;
         private float safeNumber;
-        public float SafeNumber {get{ return safeNumber; }} 
-
+        public float SafeNumber {get{ return safeNumber; }}
+       
         #endregion
 
         #region Functions
@@ -53,7 +53,13 @@ namespace LiarsDice.Library.Model
         }
         public void CalcSafeNum()
         {
-            safeNumber = activeDie * ((float)2 / (float)maxDieValue) ;
+            if(maxDieValue == 2)
+            {
+                safeNumber = activeDie / (float)2;
+            } else
+            {
+                safeNumber = activeDie * ((float)2 / (float)maxDieValue);
+            }
         }
         public void RollSequence()
         {

@@ -30,6 +30,7 @@ namespace LiarsDice.Library.Model
         {
             get{ return maxDigit; }
         }
+        
         #endregion
 
         #region Functions

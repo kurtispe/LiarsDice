@@ -20,6 +20,8 @@ namespace LiarsDice.Client
 
             Console.WriteLine(G.ReturnInfo("AboutPlayers"));
             Console.WriteLine(G.ReturnInfo());
+            Console.WriteLine(G.SafeNumber);
+            Console.WriteLine(G.ActiveDie);
 
             Console.Read();
         }

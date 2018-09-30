@@ -4,11 +4,9 @@ using System.Text;
 
 namespace LiarsDice.Library.Interfaces
 {
-    public interface Stats
+    public interface SaveHelper
     {
-        string ReturnInfo();
-        void CalculateStats();
-        void ZeroStat();
-       
+         int CaseID { get; }
+         int PrimeKey { get; }
     }
 }
