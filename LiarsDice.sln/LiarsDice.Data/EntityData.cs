@@ -77,7 +77,7 @@ namespace LiarsDice.Data
             }
         }
 
-        public async Task<G> FindAsync<G>(G findAble)where G: class 
+        public async Task<G> FindAsync<G>(G findAble) where G: class 
         {
             SaveHelper obj = findAble as SaveHelper;
             switch (obj.CaseID)
@@ -129,6 +129,31 @@ namespace LiarsDice.Data
                 default:
                     return default(List<G>);
             }
+        }
+        public async void DeleteOneAsync<G>(G obj) where G : class
+        {
+            SaveHelper deleteAble = obj as SaveHelper;
+            switch (deleteAble.CaseID)
+            {
+                case 0:
+                    CTX.Bet.Remove(obj as Bet);
+                    await CTX.SaveChangesAsync();
+                    break;
+                case 1:
+                    CTX.Die.Remove(obj as Die);
+                    await CTX.SaveChangesAsync();
+                    break;
+                case 2:
+                    CTX.Game.Remove(obj as Game);
+                    await CTX.SaveChangesAsync();
+                    break;
+                case 3:
+                    CTX.Player.Remove(obj as Player);
+                    await CTX.SaveChangesAsync();
+                    break;
+                default:
+                    throw new TypeAccessException();
+            }     
         }
         #endregion
     }

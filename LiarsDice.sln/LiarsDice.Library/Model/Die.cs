@@ -33,7 +33,6 @@ namespace LiarsDice.Library.Model
         }
         public int PrimeKey { get; set; }
         public int CaseID { get { return 1; } }
-
         #endregion
 
         #region Functions

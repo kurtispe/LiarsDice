@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LiarsDice.Data\LiarsDice.Data.csproj" />
+    <ProjectReference Include="..\LiarsDice.Library\LiarsDice.Library.csproj" />
   </ItemGroup>
 
 </Project>

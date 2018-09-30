@@ -29,7 +29,6 @@ namespace LiarsDice.Library.Model
             Name = name;
             MaxDie = maxDie;
         }
-
         #endregion
 
         #region Props

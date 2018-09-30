@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace LiarsDice.API
 {
+    //gitbash
+    //dotnet run LiarsDice.API.csproj
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,13 +27,14 @@ namespace LiarsDice.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
+            #region UselessMaybe
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
+            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
@@ -43,6 +47,8 @@ namespace LiarsDice.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            #region UselessMaybe
             //else
             //{
             //    app.UseExceptionHandler("/Home/Error");
@@ -52,11 +58,10 @@ namespace LiarsDice.API
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
             //app.UseCookiePolicy();
+            #endregion
 
             app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod());
-            app.UseMvc();
-            
-            
+            app.UseMvc();  
         }
     }
 }

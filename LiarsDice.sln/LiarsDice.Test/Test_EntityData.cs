@@ -39,8 +39,23 @@ namespace LiarsDice.Test
             sut.SaveAsync(player);
             sut.SaveAsync(new Player());
             sut.SaveAsync(new Player());
-            Assert.IsType<List<Player>>(sut.FindAllAsync<Player>().Result);
-            Assert.Equal(4, sut.FindAllAsync<Player>().Result.Count);
+            var sanityCheck = sut.FindAllAsync<Player>().Result;
+            Assert.IsType<List<Player>>(sanityCheck);
+            Assert.Equal(4, sanityCheck.Count);
+        }
+        [Fact]
+        public void Test_EntityData_DeleteItem()
+        {
+            sut.SaveAsync<Player>(player);
+            var beforeDelete = sut.FindAllAsync<Player>().Result;
+            int beforeDeleteInt = beforeDelete.Count;
+            sut.DeleteOneAsync<Player>(player);
+            var afterDelete = sut.FindAllAsync<Player>().Result;
+            int afterDeleteInt = afterDelete.Count;
+            Assert.True(beforeDeleteInt > afterDeleteInt);
+            var genericPlayer = sut.FindAsync<Player>(player).Result;
+            var sanityCheck =  sut.FindAllAsync<Player>().Result;
+            Assert.True(null == genericPlayer);
         }
     }
 }

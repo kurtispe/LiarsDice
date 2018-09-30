@@ -41,7 +41,6 @@ namespace LiarsDice.Library.Model
         public float SafeNumber {get{ return safeNumber; }}
         public int PrimeKey { get; set; }
         public int CaseID { get { return 2; } }
-
         #endregion
 
         #region Functions
