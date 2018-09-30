@@ -1,4 +1,4 @@
-﻿using LiarsDice.Data.DataModels;
+﻿
 using LiarsDice.Library.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,10 +12,10 @@ namespace LiarsDice.Data
     {
         public MockDB(){ }
 
-        public DbSet<Data_Player> Player { get; set; }
-        public DbSet<Data_Die> Die { get; set; }
-        public DbSet<Data_Game> Game { get; set; }
-        public DbSet<Data_Bet> Bet { get; set; }
+        public DbSet<Player> Player { get; set; }
+        public DbSet<Die> Die { get; set; }
+        public DbSet<Game> Game { get; set; }
+        public DbSet<Bet> Bet { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

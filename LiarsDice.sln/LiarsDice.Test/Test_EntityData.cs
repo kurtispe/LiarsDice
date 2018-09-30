@@ -1,5 +1,5 @@
 ﻿using LiarsDice.Data;
-using LiarsDice.Data.DataModels;
+using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,23 +13,21 @@ namespace LiarsDice.Test
         public Test_EntityData()
         {
             sut = new EntityData();
-            player = new Data_Player()
+            player = new Player()
             {
                 Name = "Karl",
                 Score = 4
             };
-            db = new MockDB();
         }
         private EntityData sut;
-        private Data_Player player;
-        private MockDB db;
+        private Player player;
 
         [Fact]
         public void Test_EntityData_Save_and_Read()
         {
             player.RollDice();
-            sut.SaveAsync<Data_Player>(player);
-            var result = sut.FindAsync<Data_Player, Data_Player>(player).Result;
+            sut.SaveAsync<Player>(player);
+            var result = sut.FindAsync<Player, Player>(player).Result;
             Assert.Equal(player.Name, result.Name); 
         }
     }

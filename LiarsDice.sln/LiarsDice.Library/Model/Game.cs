@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Game : Stats
+    public class Game : Stats, SaveHelper
     {
         #region Constructor
         public Game() : this(6)
@@ -39,7 +39,8 @@ namespace LiarsDice.Library.Model
         private int[] StatLog;
         private float safeNumber;
         public float SafeNumber {get{ return safeNumber; }}
-        private int PrimeKey;
+        public int PrimeKey { get; set; }
+        public int CaseID { get { return 2; } }
 
         #endregion
 

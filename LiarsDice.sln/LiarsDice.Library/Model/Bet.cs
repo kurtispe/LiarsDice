@@ -1,10 +1,11 @@
-﻿using System;
+﻿using LiarsDice.Library.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Bet
+    public class Bet : SaveHelper 
     {
         #region Constructor
         public Bet() : this(1)
@@ -32,7 +33,8 @@ namespace LiarsDice.Library.Model
         {
             get { return digit; }
         }
-        private int PrimeKey;
+        public int PrimeKey { get; set; }
+        public int CaseID { get { return 0; } }
         #endregion
     }
 }

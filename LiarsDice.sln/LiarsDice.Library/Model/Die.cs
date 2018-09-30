@@ -1,10 +1,11 @@
-﻿using System;
+﻿using LiarsDice.Library.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Die
+    public class Die : SaveHelper
     {
         #region Contructor
         public Die() : this(6)
@@ -30,7 +31,8 @@ namespace LiarsDice.Library.Model
         {
             get{ return maxDigit; }
         }
-        private int PrimeKey;
+        public int PrimeKey { get; set; }
+        public int CaseID { get { return 1; } }
 
         #endregion
 

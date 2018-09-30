@@ -1,4 +1,4 @@
-﻿using LiarsDice.Data.DataModels;
+﻿
 using LiarsDice.Library.Interfaces;
 using LiarsDice.Library.Model;
 using Microsoft.EntityFrameworkCore;
@@ -26,19 +26,19 @@ namespace LiarsDice.Data
             switch (obj.CaseID)
             {
                 case 0:
-                    CTX.Bet.Add(obj as Data_Bet);
+                    CTX.Bet.Add(obj as Bet);
                     await CTX.SaveChangesAsync();
                     break;
                 case 1:
-                    CTX.Die.Add(obj as Data_Die);
+                    CTX.Die.Add(obj as Die);
                     await CTX.SaveChangesAsync();
                     break;
                 case 2:
-                    CTX.Game.Add(obj as Data_Game);
+                    CTX.Game.Add(obj as Game);
                     await CTX.SaveChangesAsync();
                     break;
                 case 3:
-                    CTX.Player.Add(obj as Data_Player);
+                    CTX.Player.Add(obj as Player);
                     await CTX.SaveChangesAsync();
                     break;
             }

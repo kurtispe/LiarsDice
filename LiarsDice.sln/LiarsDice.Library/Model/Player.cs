@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Player : Stats
+    public class Player : Stats, SaveHelper
     {
         #region Constructor
         public Player() : this("genericName")
@@ -44,7 +44,8 @@ namespace LiarsDice.Library.Model
         {
             get {return bet;}
         }
-        private int PrimeKey;
+        public int PrimeKey { get; set; }
+        public int CaseID { get { return 3; } }
         #endregion
 
         #region Functions
