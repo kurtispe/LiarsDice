@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LiarsDice.Data
 {
-    public class LiarsDiceDB : DbContext
+    public class LiarsDiceDB : DbContext 
     {
         public LiarsDiceDB() { }
 
@@ -16,6 +16,7 @@ namespace LiarsDice.Data
         public DbSet<Die> Die { get; set; }
         public DbSet<Game> Game { get; set; }
         public DbSet<Bet> Bet { get; set; }
+        public DbSet<Account> Account { get; set; }
 
         private readonly string path = "C:/Users/kurti/Documents/MyVsProgram/LiarsDice/LiarsDice.sln/LiarsDice.Data/jsconfig1.json";
 
@@ -23,8 +24,8 @@ namespace LiarsDice.Data
         {
             using (StreamReader reader = new StreamReader(path))
             {
-                var list = JsonConvert.DeserializeObject<Dictionary<string, string>>(reader.ReadToEnd());
-                builder.UseSqlServer(list["ConnectMe"]);
+                var access = JsonConvert.DeserializeObject<Dictionary<string, string>>(reader.ReadToEnd());
+                builder.UseSqlServer(access["ConnectMe"]);
             }
         }
 
@@ -34,6 +35,7 @@ namespace LiarsDice.Data
             modBuilder.Entity<Bet>().HasKey("PrimeKey");
             modBuilder.Entity<Game>().HasKey("PrimeKey");
             modBuilder.Entity<Die>().HasKey("PrimeKey");
+            modBuilder.Entity<Account>().HasKey("PrimeKey");
         }
     }
 }

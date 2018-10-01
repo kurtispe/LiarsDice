@@ -17,4 +17,8 @@
     <ProjectReference Include="..\LiarsDice.Library\LiarsDice.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

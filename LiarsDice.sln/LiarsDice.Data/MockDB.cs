@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LiarsDice.Data
 {
-    public class MockDB : DbContext
+    public class MockDB : DbContext 
     {
         public MockDB(){ }
 
@@ -16,6 +16,7 @@ namespace LiarsDice.Data
         public DbSet<Die> Die { get; set; }
         public DbSet<Game> Game { get; set; }
         public DbSet<Bet> Bet { get; set; }
+        public DbSet<Account> Account { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -28,6 +29,7 @@ namespace LiarsDice.Data
             modBuilder.Entity<Bet>().HasKey("PrimeKey");
             modBuilder.Entity<Game>().HasKey("PrimeKey");
             modBuilder.Entity<Die>().HasKey("PrimeKey");
+            modBuilder.Entity<Account>().HasKey("PrimeKey");
         }
     }
 }

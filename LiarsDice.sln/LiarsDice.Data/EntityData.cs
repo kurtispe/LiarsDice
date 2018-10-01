@@ -13,9 +13,10 @@ namespace LiarsDice.Data
     {
         #region Constructor
         public EntityData()
-        { 
+        {
+            
         }
-       
+
         private static  MockDB CTX = new MockDB();
         #endregion
 
@@ -30,7 +31,6 @@ namespace LiarsDice.Data
                 case 0:
                     try
                     {
-                      
                         CTX.Bet.Add(obj as Bet);
                         await CTX.SaveChangesAsync();
                     }
@@ -76,8 +76,20 @@ namespace LiarsDice.Data
                         await CTX.SaveChangesAsync();
                     }
                     break;
-               // default:
-                   // throw new TypeAccessException();
+                case 4:
+                    try
+                    {
+                        CTX.Account.Add(obj as Account);
+                        await CTX.SaveChangesAsync();
+                    }
+                    catch (ArgumentException)
+                    {
+                        CTX.Account.Update(obj as Account);
+                        await CTX.SaveChangesAsync();
+                    }
+                    break;
+                    // default:
+                    // throw new TypeAccessException();
             }
         }
 
@@ -94,6 +106,8 @@ namespace LiarsDice.Data
                     return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 case 3:
                     return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
+                case 4:
+                    return await CTX.Account.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
                 default:
                     return default(G);
             }
@@ -112,6 +126,8 @@ namespace LiarsDice.Data
                     return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
                 case 3:
                     return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
+                case 4:
+                    return await CTX.Account.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
                 default:
                     return default(G);
             }
@@ -130,6 +146,8 @@ namespace LiarsDice.Data
                     return await CTX.Game.ToListAsync() as List<G>;
                 case 3:
                     return await CTX.Player.ToListAsync() as List<G>;
+                case 4:
+                    return await CTX.Account.ToListAsync() as List<G>;
                 default:
                     return default(List<G>);
             }
@@ -155,6 +173,9 @@ namespace LiarsDice.Data
                     CTX.Player.Remove(obj as Player);
                     await CTX.SaveChangesAsync();
                     break;
+
+                    //case 4: Stored Procedure to change status 
+
                 default:
                     throw new TypeAccessException();
             }     
