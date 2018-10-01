@@ -18,9 +18,11 @@ namespace LiarsDice.Test
                 Name = "Karl",
                 Score = 4
             };
+            die = new Die();
         }
         private EntityData sut;
         private Player player;
+        private Die die;
 
         [Fact]
         public void Test_EntityData_Save_and_Read()
@@ -56,6 +58,16 @@ namespace LiarsDice.Test
             var genericPlayer = sut.FindAsync<Player>(player).Result;
             var sanityCheck =  sut.FindAllAsync<Player>().Result;
             Assert.True(null == genericPlayer);
+        }
+        [Fact]
+        public void Test_EntityData_Update()
+        {
+            sut.SaveAsync<Die>(die);
+            var sanityCheck = die;
+            die.Roll();
+            sut.SaveAsync<Die>(die);
+            var result = sut.FindAsync<Die>(1).Result;
+            Assert.NotEqual(0, result.Value);
         }
     }
 }

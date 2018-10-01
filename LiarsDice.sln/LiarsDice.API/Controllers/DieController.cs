@@ -41,7 +41,7 @@ namespace LiarsDice.API.Controllers
         }
         [HttpPost]
         [Consumes("application/json")]
-        public async Task<IActionResult> PostDiceAsync([FromBody] List<Die> dice)
+        public async Task<IActionResult> PostDiceAsync([FromBody] Die[] dice)
         {
             await Task.Run(() =>
             {

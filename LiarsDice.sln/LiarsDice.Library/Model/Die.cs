@@ -15,7 +15,7 @@ namespace LiarsDice.Library.Model
         {
             value = 0;
             RNG = new Random();
-            maxDigit = md + 1;
+            MaxDigit = md + 1; //maxDigit
         }
         #endregion
 
@@ -26,13 +26,13 @@ namespace LiarsDice.Library.Model
         {
             get {return value;}
         }
-        private int maxDigit;
-        public int MaxDigit
-        {
-            get{ return maxDigit; }
-        }
-        public int PrimeKey { get; set; }
-        public int CaseID { get { return 1; } }
+        public int MaxDigit; //maxDigit
+       // public int MaxDigit
+        //{
+        //    get{ return maxDigit; }
+       // }
+        public int PrimeKey {get; set;}
+        public int CaseID {get{return 1;}}
         #endregion
 
         #region Functions

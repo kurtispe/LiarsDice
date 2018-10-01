@@ -20,13 +20,17 @@ namespace LiarsDice.Data
         #endregion
 
         #region Functions
-        public async void SaveAsync<T>(T obj) where T : SaveHelper
+        public async void SaveAsync<G>(G obj) where G : class
         {
-            switch (obj.CaseID)
+            var convertMe = Activator.CreateInstance(typeof(G)) as G;
+            SaveHelper type = convertMe as SaveHelper;
+
+            switch (type.CaseID)
             {
                 case 0:
                     try
                     {
+                      
                         CTX.Bet.Add(obj as Bet);
                         await CTX.SaveChangesAsync();
                     }
@@ -72,8 +76,8 @@ namespace LiarsDice.Data
                         await CTX.SaveChangesAsync();
                     }
                     break;
-                default:
-                    throw new TypeAccessException();
+               // default:
+                   // throw new TypeAccessException();
             }
         }
 
