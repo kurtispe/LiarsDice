@@ -24,8 +24,9 @@ namespace LiarsDice.Library.Model
         public int PrimeKey {get; set;}
         public string Name;
         public string Email;
-        private string Visibility;
+        private bool Visibility;
         #region Stats
+
         public string ReturnInfo()
         {
             throw new NotImplementedException();
