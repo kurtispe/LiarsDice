@@ -62,7 +62,6 @@ namespace LiarsDice.API.Controllers
             });
             return Ok(); 
         }
-
         [HttpGet]
         [Route("save")]
         public async Task<IActionResult> GetSaveAsync()
@@ -75,7 +74,6 @@ namespace LiarsDice.API.Controllers
             });
             return Ok();
         }
-  
         #endregion
     }
 }
