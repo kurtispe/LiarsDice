@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Account : SaveHelper, Stats
+    public class Account : Stats
     {
         #region Constructor
         public Account() : this("genericName", "genericEmail@.com")
@@ -16,17 +16,18 @@ namespace LiarsDice.Library.Model
         {
             Name = name;
             Email = email;
+            Visibility = true;
         }
         #endregion
 
         #region Props
-        public int CaseID {get { return 4;}}
-        public int PrimeKey {get; set;}
-        public string Name;
-        public string Email;
-        private bool Visibility;
-        #region Stats
 
+        public readonly string Name;
+        public readonly string Email;
+        public bool Visibility;
+
+        #region Functions
+        #region Stats
         public string ReturnInfo()
         {
             throw new NotImplementedException();
@@ -41,6 +42,7 @@ namespace LiarsDice.Library.Model
         {
             throw new NotImplementedException();
         }
+        #endregion
         #endregion
 
         #endregion

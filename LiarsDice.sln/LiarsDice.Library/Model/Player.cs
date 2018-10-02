@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Player : Stats, SaveHelper
+    public class Player : Stats
     {
         #region Constructor
         public Player() : this("genericName")
@@ -37,14 +37,8 @@ namespace LiarsDice.Library.Model
         public int Score;
         public int MaxDie;
         public List<Die> Dice;
-        public int[] StatLog;
-        private Bet bet;
-        public Bet Bet
-        {
-            get {return bet;}
-        }
-        public int PrimeKey { get; set; }
-        public int CaseID { get { return 3; } }
+        protected int[] StatLog;
+        public Bet Bet { get; set; }
         #endregion
 
         #region Functions
@@ -66,7 +60,7 @@ namespace LiarsDice.Library.Model
             {
                 d = 1;
             }
-            bet = new Bet(w,d);
+            Bet = new Bet(w,d);
         }
 
         #region Stats

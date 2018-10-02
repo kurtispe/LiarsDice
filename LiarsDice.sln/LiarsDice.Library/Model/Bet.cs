@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Bet : SaveHelper 
+    public class Bet 
     {
         #region Constructor
         public Bet() : this(1)
@@ -13,28 +13,18 @@ namespace LiarsDice.Library.Model
         }
         public Bet(int w) : this(w,1)
         {
-            weight = w;
+            Weight = w;
         }
         public Bet(int w, int d)
         {
-            weight = w;
-            digit = d;
+            Weight = w;
+            Digit = d;
         }
         #endregion
 
         #region Props
-        private int weight;
-        public int Weight
-        {
-            get { return weight;}
-        }
-        private int digit;
-        public int Digit
-        {
-            get { return digit; }
-        }
-        public int PrimeKey { get; set; }
-        public int CaseID { get { return 0; } }
+        public int Weight { get; set; }
+        public int Digit { get; set; }
         #endregion
     }
 }

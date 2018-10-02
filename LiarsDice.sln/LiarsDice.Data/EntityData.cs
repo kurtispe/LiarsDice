@@ -1,6 +1,6 @@
 ﻿
-using LiarsDice.Library.Interfaces;
-using LiarsDice.Library.Model;
+using LiarsDice.Data.DataModels;
+using LiarsDice.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,12 +12,12 @@ namespace LiarsDice.Data
     public class EntityData
     {
         #region Constructor
-        public EntityData()
+        public EntityData( )
         {
-            
+         
         }
 
-        private static  MockDB CTX = new MockDB();
+        private static MockDB CTX = new MockDB();
         #endregion
 
         #region Functions
@@ -31,71 +31,71 @@ namespace LiarsDice.Data
                 case 0:
                     try
                     {
-                        CTX.Bet.Add(obj as Bet);
+                        CTX.Bet.Add(obj as BetDB);
                         await CTX.SaveChangesAsync();
                     }
                     catch (ArgumentException)
                     {
-                        CTX.Bet.Update(obj as Bet);
+                        CTX.Bet.Update(obj as BetDB);
                         await CTX.SaveChangesAsync();
                     }
                     break;
                 case 1:
                     try
                     {
-                        CTX.Die.Add(obj as Die);
+                        CTX.Die.Add(obj as DieDB);
                         await CTX.SaveChangesAsync();
                     }
                     catch (ArgumentException)
                     {
-                        CTX.Die.Update(obj as Die);
+                        CTX.Die.Update(obj as DieDB);
                         await CTX.SaveChangesAsync();
                     }
                     break;
                 case 2:
                     try
                     {
-                        CTX.Game.Add(obj as Game);
+                        CTX.Game.Add(obj as GameDB);
                         await CTX.SaveChangesAsync();
                     }
                     catch (ArgumentException)
                     {
-                        CTX.Game.Update(obj as Game);
+                        CTX.Game.Update(obj as GameDB);
                         await CTX.SaveChangesAsync();
                     }
                     break;
                 case 3:
                     try
                     {
-                        CTX.Player.Add(obj as Player);
+                        var a = obj;
+                        CTX.Player.Add(obj as PlayerDB);
                         await CTX.SaveChangesAsync();
                     }
                     catch (ArgumentException)
                     {
-                        CTX.Player.Update(obj as Player);
+                        CTX.Player.Update(obj as PlayerDB);
                         await CTX.SaveChangesAsync();
                     }
                     break;
                 case 4:
                     try
                     {
-                        CTX.Account.Add(obj as Account);
+                        CTX.Account.Add(obj as AccountDB);
                         await CTX.SaveChangesAsync();
                     }
                     catch (ArgumentException)
                     {
-                        CTX.Account.Update(obj as Account);
+                        CTX.Account.Update(obj as AccountDB);
                         await CTX.SaveChangesAsync();
                     }
                     break;
-                    // default:
-                    // throw new TypeAccessException();
             }
         }
 
         public async Task<G> FindAsync<G>(G findAble) where G: class 
         {
             SaveHelper obj = findAble as SaveHelper;
+
             switch (obj.CaseID)
             {
                 case 0:
@@ -116,6 +116,7 @@ namespace LiarsDice.Data
         {
             var convertMe = Activator.CreateInstance(typeof(G)) as G;
             SaveHelper type = convertMe as SaveHelper;
+
             switch (type.CaseID)
             {
                 case 0:
@@ -158,19 +159,19 @@ namespace LiarsDice.Data
             switch (deleteAble.CaseID)
             {
                 case 0:
-                    CTX.Bet.Remove(obj as Bet);
+                    CTX.Bet.Remove(obj as BetDB);
                     await CTX.SaveChangesAsync();
                     break;
                 case 1:
-                    CTX.Die.Remove(obj as Die);
+                    CTX.Die.Remove(obj as DieDB);
                     await CTX.SaveChangesAsync();
                     break;
                 case 2:
-                    CTX.Game.Remove(obj as Game);
+                    CTX.Game.Remove(obj as GameDB);
                     await CTX.SaveChangesAsync();
                     break;
                 case 3:
-                    CTX.Player.Remove(obj as Player);
+                    CTX.Player.Remove(obj as PlayerDB);
                     await CTX.SaveChangesAsync();
                     break;
 

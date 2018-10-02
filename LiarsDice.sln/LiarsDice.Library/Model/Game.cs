@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Game : Stats, SaveHelper
+    public class Game : Stats
     {
         #region Constructor
         public Game() : this(6)
@@ -21,50 +21,43 @@ namespace LiarsDice.Library.Model
         {
             maxDieValue = mdv;
             StatLog = new int[mdv];
-            safeNumber = 0.00F;
-            competitors = new List<Player>();
+            SafeNumber = 0.00F;
+            Competitors = new List<Player>();
             numberOfDicePerPlayerAtStart = nod;
         }
         #endregion
 
         #region Props
-        private List<Player> competitors;
-        public List<Player> Competitors { get {
-                return competitors;
-            }}
-        private int activeDie;
-        public int ActiveDie { get { return activeDie; }}
-        readonly int maxDieValue;
-        readonly int numberOfDicePerPlayerAtStart;
-        private int[] StatLog;
-        private float safeNumber;
-        public float SafeNumber {get{ return safeNumber; }}
-        public int PrimeKey { get; set; }
-        public int CaseID { get { return 2; } }
+        public List<Player> Competitors;
+        public int ActiveDie { get; set; }
+        public readonly int maxDieValue;
+        public readonly int numberOfDicePerPlayerAtStart;
+        public  int[] StatLog { get; set; }
+        public float SafeNumber { get; set; }
         #endregion
 
         #region Functions
         public void AddPlayer(Player player)
         {
-            this.competitors.Add(player);
+            this.Competitors.Add(player);
         }
         public void RemovePlayer(Player player)
         {
-            this.competitors.Remove(player);
+            this.Competitors.Remove(player);
         }
         public void CalcSafeNum()
         {
             if(maxDieValue == 2)
             {
-                safeNumber = activeDie / (float)2;
+                SafeNumber = ActiveDie / (float)2;
             } else
             {
-                safeNumber = activeDie * ((float)2 / (float)maxDieValue);
+                SafeNumber = ActiveDie * ((float)2 / (float)maxDieValue);
             }
         }
         public void RollSequence()
         {
-            foreach(Player player in competitors)
+            foreach(Player player in Competitors)
             {
                 player.RollDice();
             }
@@ -80,7 +73,7 @@ namespace LiarsDice.Library.Model
         {
             ZeroStat();
             int numOfDieInPlay = 0;
-            foreach (Player player in competitors)
+            foreach (Player player in Competitors)
             {
                 foreach (Die die in player.Dice)
                 {
@@ -88,7 +81,7 @@ namespace LiarsDice.Library.Model
                     numOfDieInPlay++;
                 }
             }
-            activeDie = numOfDieInPlay;
+            ActiveDie = numOfDieInPlay;
             CalcSafeNum();
         }
         public void ZeroStat()
@@ -112,7 +105,7 @@ namespace LiarsDice.Library.Model
         public string ReturnInfo(String ProbablyTheMostMemeTrollEver)
         {
             string returnable = "";
-            foreach (Player P in competitors)
+            foreach (Player P in Competitors)
             {
                 returnable = returnable + P.ReturnInfo();
                 returnable = returnable + "\r\n";

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiarsDice.Library.Interfaces
+namespace LiarsDice.Data.Interfaces
 {
     public interface SaveHelper
     {
-         int CaseID {get;}
-         int PrimeKey {get; set;}
+        int CaseID { get; }
+        int PrimeKey { get; set; }
+
     }
 }

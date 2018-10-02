@@ -16,6 +16,24 @@ namespace LiarsDice.Test
         private Die sut;
 
         [Fact]
+        public void Test_Die_Constructor()
+        {
+            Die D1 = new Die();
+
+            Assert.Equal(7,D1.MaxDigit);
+            Assert.Equal(0, D1.Value);
+
+            Die D2 = new Die(4);
+
+            Assert.Equal(5, D2.MaxDigit);
+            Assert.Equal(0, D2.Value);
+
+            Die D3 = new Die(12, 9);
+
+            Assert.Equal(12, D3.MaxDigit);
+            Assert.Equal(9, D3.Value);
+        }
+        [Fact]
         public void Test_Die_Roll()
         {
             var exp = 0;

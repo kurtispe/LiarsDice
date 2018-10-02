@@ -1,5 +1,5 @@
 ﻿
-using LiarsDice.Library.Model;
+using LiarsDice.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,11 @@ namespace LiarsDice.Data
     {
         public MockDB(){ }
 
-        public DbSet<Player> Player { get; set; }
-        public DbSet<Die> Die { get; set; }
-        public DbSet<Game> Game { get; set; }
-        public DbSet<Bet> Bet { get; set; }
-        public DbSet<Account> Account { get; set; }
+        public DbSet<PlayerDB> Player { get; set; }
+        public DbSet<DieDB> Die { get; set; }
+        public DbSet<GameDB> Game { get; set; }
+        public DbSet<BetDB> Bet { get; set; }
+        public DbSet<AccountDB> Account { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -25,11 +25,15 @@ namespace LiarsDice.Data
 
         protected override void OnModelCreating(ModelBuilder modBuilder)
         {
-            modBuilder.Entity<Player>().HasKey("PrimeKey");
-            modBuilder.Entity<Bet>().HasKey("PrimeKey");
-            modBuilder.Entity<Game>().HasKey("PrimeKey");
-            modBuilder.Entity<Die>().HasKey("PrimeKey");
-            modBuilder.Entity<Account>().HasKey("PrimeKey");
+            modBuilder.Entity<PlayerDB>().HasKey("PrimeKey");
+
+            modBuilder.Entity<BetDB>().HasKey("PrimeKey");
+
+            modBuilder.Entity<GameDB>().HasKey("PrimeKey");
+
+            modBuilder.Entity<DieDB>().HasKey("PrimeKey");
+
+            modBuilder.Entity<AccountDB>().HasKey("PrimeKey");
         }
     }
 }
