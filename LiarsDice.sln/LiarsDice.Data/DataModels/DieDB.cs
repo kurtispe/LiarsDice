@@ -1,4 +1,5 @@
-﻿using LiarsDice.Data.Interfaces;
+﻿using LiarsDice.Data.Abstracts;
+using LiarsDice.Data.Interfaces;
 using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace LiarsDice.Data.DataModels
 {
-    public class DieDB :  SaveHelper
+    public class DieDB : SaveHelper, GenericHelper
     {
         #region Constructor 
         public DieDB() : this (new Die())
@@ -18,8 +19,8 @@ namespace LiarsDice.Data.DataModels
         }
         #endregion
         #region Props
-        public int CaseID { get { return 1; } }
-        public int PrimeKey { get; set; }
+        public string caseType { get { return "Die"; } }
+        public override sealed int PK { get; set; }
         public int Value { get; set; }
         public int MaxDigit;
         #endregion

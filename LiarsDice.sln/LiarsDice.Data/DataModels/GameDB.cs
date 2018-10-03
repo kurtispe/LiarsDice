@@ -1,4 +1,5 @@
-﻿using LiarsDice.Data.Interfaces;
+﻿using LiarsDice.Data.Abstracts;
+using LiarsDice.Data.Interfaces;
 using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace LiarsDice.Data.DataModels
 {
-    public class GameDB : SaveHelper
+    public class GameDB : SaveHelper, GenericHelper
     {
         #region Constructor 
         public GameDB() 
@@ -19,22 +20,15 @@ namespace LiarsDice.Data.DataModels
         #endregion
 
         #region Props
-        public int CaseID { get { return 2; } }
-        public int PrimeKey { get; set; }
+        public string caseType { get { return "Game"; } }
+        public override sealed int PK { get; set; }
 
-        protected List<PlayerDB> competitors;
-        public List<PlayerDB> Competitors
-        {
-            get
-            {
-                return competitors;
-            }
-        }
+        public List<PlayerDB> Competitors { get; set; }
         public float SafeNumber { get; set; }
         public int ActiveDie { get; set; }
-        private int maxDieValue;
-        private int numberOfDicePerPlayerAtStart;
-        private int[] StatLog;
+        public int maxDieValue { get; set; }
+        public int numberOfDicePerPlayerAtStart { get; set; }
+        public int[] StatLog;
         #endregion
 
         #region Function 
@@ -47,11 +41,22 @@ namespace LiarsDice.Data.DataModels
             maxDieValue = game.maxDieValue;
             numberOfDicePerPlayerAtStart = game.numberOfDicePerPlayerAtStart;
             StatLog = game.StatLog;
-
             foreach(Player p in game.Competitors)
             {
-                 competitors.Add(new PlayerDB(p));
+                 Competitors.Add(new PlayerDB(p));
             }   
+        }
+        public Game ProduceReturnable()
+        {
+            Game game = new Game(numberOfDicePerPlayerAtStart, maxDieValue);
+            game.ActiveDie = ActiveDie;
+            game.SafeNumber = SafeNumber;
+            game.StatLog = StatLog;
+            foreach(PlayerDB play in Competitors)
+            {
+                game.Competitors.Add(play.ProduceReturnable());
+            }
+            return game;
         }
         #endregion
     }

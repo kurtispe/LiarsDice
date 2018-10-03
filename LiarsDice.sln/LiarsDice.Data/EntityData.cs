@@ -4,7 +4,6 @@ using LiarsDice.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LiarsDice.Data
@@ -12,175 +11,155 @@ namespace LiarsDice.Data
     public class EntityData
     {
         #region Constructor
-        public EntityData( )
+        public EntityData(CommonContext db)
         {
-         
+            CTX = db;
         }
 
-        private static MockDB CTX = new MockDB();
+        private static CommonContext CTX;
         #endregion
 
         #region Functions
-        public async void SaveAsync<G>(G obj) where G : class
+        #region Bet
+        public async void SaveBet(BetDB obj)
         {
-            var convertMe = Activator.CreateInstance(typeof(G)) as G;
-            SaveHelper type = convertMe as SaveHelper;
-
-            switch (type.CaseID)
+            try
             {
-                case 0:
-                    try
-                    {
-                        CTX.Bet.Add(obj as BetDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    catch (ArgumentException)
-                    {
-                        CTX.Bet.Update(obj as BetDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    break;
-                case 1:
-                    try
-                    {
-                        CTX.Die.Add(obj as DieDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    catch (ArgumentException)
-                    {
-                        CTX.Die.Update(obj as DieDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    break;
-                case 2:
-                    try
-                    {
-                        CTX.Game.Add(obj as GameDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    catch (ArgumentException)
-                    {
-                        CTX.Game.Update(obj as GameDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    break;
-                case 3:
-                    try
-                    {
-                        var a = obj;
-                        CTX.Player.Add(obj as PlayerDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    catch (ArgumentException)
-                    {
-                        CTX.Player.Update(obj as PlayerDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    break;
-                case 4:
-                    try
-                    {
-                        CTX.Account.Add(obj as AccountDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    catch (ArgumentException)
-                    {
-                        CTX.Account.Update(obj as AccountDB);
-                        await CTX.SaveChangesAsync();
-                    }
-                    break;
+                CTX.BetDB.Add(obj);
+                await CTX.SaveChangesAsync();
+            }
+            catch (ArgumentException)
+            {
+                CTX.BetDB.Update(obj);
+                await CTX.SaveChangesAsync();
             }
         }
-
-        public async Task<G> FindAsync<G>(G findAble) where G: class 
+        public async Task<BetDB> FindBet(int pk)
         {
-            SaveHelper obj = findAble as SaveHelper;
-
-            switch (obj.CaseID)
-            {
-                case 0:
-                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
-                case 1:
-                    return await CTX.Die.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
-                case 2:
-                    return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
-                case 3:
-                    return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
-                case 4:
-                    return await CTX.Account.SingleOrDefaultAsync(n => n.PrimeKey == obj.PrimeKey) as G;
-                default:
-                    return default(G);
-            }
+            return await CTX.BetDB.SingleOrDefaultAsync(n => n.PK == pk);
         }
-        public async Task<G> FindAsync<G>(int id) where G : class
+        public async Task<List<BetDB>> FindAllBets()
         {
-            var convertMe = Activator.CreateInstance(typeof(G)) as G;
-            SaveHelper type = convertMe as SaveHelper;
-
-            switch (type.CaseID)
-            {
-                case 0:
-                    return await CTX.Bet.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case 1:
-                    return await CTX.Die.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case 2:
-                    return await CTX.Game.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case 3:
-                    return await CTX.Player.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                case 4:
-                    return await CTX.Account.SingleOrDefaultAsync(n => n.PrimeKey == id) as G;
-                default:
-                    return default(G);
-            }
+            return await CTX.BetDB.ToListAsync();
         }
-        public async Task<List<G>> FindAllAsync<G>() where G : class
+        public async void DeleteOneBet(BetDB obj)
         {
-            var convertMe = Activator.CreateInstance(typeof(G)) as G;
-            SaveHelper type = convertMe as SaveHelper;
-            switch (type.CaseID)
-            {
-                case 0:
-                    return await CTX.Bet.ToListAsync() as List<G>;
-                case 1:
-                    return await CTX.Die.ToListAsync() as List<G>;
-                case 2:
-                    return await CTX.Game.ToListAsync() as List<G>;
-                case 3:
-                    return await CTX.Player.ToListAsync() as List<G>;
-                case 4:
-                    return await CTX.Account.ToListAsync() as List<G>;
-                default:
-                    return default(List<G>);
-            }
-        }
-        public async void DeleteOneAsync<G>(G obj) where G : class
-        {
-            SaveHelper deleteAble = obj as SaveHelper;
-            switch (deleteAble.CaseID)
-            {
-                case 0:
-                    CTX.Bet.Remove(obj as BetDB);
-                    await CTX.SaveChangesAsync();
-                    break;
-                case 1:
-                    CTX.Die.Remove(obj as DieDB);
-                    await CTX.SaveChangesAsync();
-                    break;
-                case 2:
-                    CTX.Game.Remove(obj as GameDB);
-                    await CTX.SaveChangesAsync();
-                    break;
-                case 3:
-                    CTX.Player.Remove(obj as PlayerDB);
-                    await CTX.SaveChangesAsync();
-                    break;
-
-                    //case 4: Stored Procedure to change status 
-
-                default:
-                    throw new TypeAccessException();
-            }     
+            CTX.BetDB.Remove(obj);
+            await CTX.SaveChangesAsync();
         }
         #endregion
+        #region Account
+        public async void SaveAccount(AccountDB obj)
+        {
+            try
+            {
+                CTX.AccountDB.Add(obj);
+                await CTX.SaveChangesAsync();
+            }
+            catch (ArgumentException)
+            {
+                CTX.AccountDB.Update(obj);
+                await CTX.SaveChangesAsync();
+            }
+        }
+        public async Task<AccountDB> FindAccount(int pk)
+        {
+            return await CTX.AccountDB.SingleOrDefaultAsync(n => n.PK == pk);
+        }
+        public async Task<List<AccountDB>> FindAllAccounts()
+        {
+            return await CTX.AccountDB.ToListAsync();
+        }
+        public async void DeleteOneAccount(AccountDB obj)
+        {
+            CTX.AccountDB.Remove(obj);
+            await CTX.SaveChangesAsync();
+        }
+        #endregion
+        #region Die
+        public async void SaveDie(DieDB obj)
+        {
+            try
+            {
+                CTX.DieDB.Add(obj);
+                await CTX.SaveChangesAsync();
+            }
+            catch (ArgumentException)
+            {
+                CTX.DieDB.Update(obj);
+                await CTX.SaveChangesAsync();
+            }
+        }
+        public async Task<DieDB> FindDie(int pk)
+        {
+            return await CTX.DieDB.SingleOrDefaultAsync(n => n.PK == pk);
+        }
+        public async Task<List<DieDB>> FindAllDies()
+        {
+            return await CTX.DieDB.ToListAsync();
+        }
+        public async void DeleteOneDie(DieDB obj)
+        {
+            CTX.DieDB.Remove(obj);
+            await CTX.SaveChangesAsync();
+        }
+        #endregion
+        #region Player
+        public async void SavePlayer(PlayerDB obj)
+        {
+            try
+            {
+                CTX.PlayerDB.Add(obj);
+                await CTX.SaveChangesAsync();
+            }
+            catch (ArgumentException)
+            {
+                CTX.PlayerDB.Update(obj);
+                await CTX.SaveChangesAsync();
+            }
+        }
+        public async Task<PlayerDB> FindPlayer(int pk)
+        {
+            return await CTX.PlayerDB.SingleOrDefaultAsync(n => n.PK == pk);
+        }
+        public async Task<List<PlayerDB>> FindAllPlayers()
+        {
+            return await CTX.PlayerDB.ToListAsync();
+        }
+        public async void DeleteOnePlayer(PlayerDB obj)
+        {
+            CTX.PlayerDB.Remove(obj);
+            await CTX.SaveChangesAsync();
+        }
+        #endregion
+        #region Game
+        public async void SaveGame(GameDB obj)
+        {
+            try
+            {
+                CTX.GameDB.Add(obj);
+                await CTX.SaveChangesAsync();
+            }
+            catch (ArgumentException)
+            {
+                CTX.GameDB.Update(obj);
+                await CTX.SaveChangesAsync();
+            }
+        }
+        public async Task<GameDB> FindGame(int pk)
+        {
+            return await CTX.GameDB.SingleOrDefaultAsync(n => n.PK == pk);
+        }
+        public async Task<List<GameDB>> FindAllGames()
+        {
+            return await CTX.GameDB.ToListAsync();
+        }
+        public async void DeleteOneGame(GameDB obj)
+        {
+            CTX.GameDB.Remove(obj);
+            await CTX.SaveChangesAsync();
+        }
+        #endregion
+    #endregion
     }
 }

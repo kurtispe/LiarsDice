@@ -1,4 +1,5 @@
-﻿using LiarsDice.Data.Interfaces;
+﻿using LiarsDice.Data.Abstracts;
+using LiarsDice.Data.Interfaces;
 using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace LiarsDice.Data.DataModels
 {
-    public class BetDB : SaveHelper
+    public class BetDB : SaveHelper, GenericHelper
     {
         #region Constructor 
         public BetDB() : this(new Bet())
@@ -18,8 +19,8 @@ namespace LiarsDice.Data.DataModels
         }
         #endregion
         #region Props
-        public int CaseID {get { return 0;}}
-        public int PrimeKey { get; set; }
+        public string caseType { get { return "Bet"; } }
+        public override sealed int PK { get; set; }
         public int Weight { get; set; }
         public int Digit { get; set; }
         #endregion
@@ -28,6 +29,10 @@ namespace LiarsDice.Data.DataModels
         {
             Weight = bet.Weight;
             Digit = bet.Digit;
+        }
+        public Bet ProduceReturnable()
+        {
+            return new Bet(Weight, Digit);
         }
         #endregion
     }

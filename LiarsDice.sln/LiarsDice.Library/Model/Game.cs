@@ -30,8 +30,8 @@ namespace LiarsDice.Library.Model
         #region Props
         public List<Player> Competitors;
         public int ActiveDie { get; set; }
-        public readonly int maxDieValue;
-        public readonly int numberOfDicePerPlayerAtStart;
+        public int maxDieValue { get; set; }
+        public int numberOfDicePerPlayerAtStart { get; set; }
         public  int[] StatLog { get; set; }
         public float SafeNumber { get; set; }
         #endregion

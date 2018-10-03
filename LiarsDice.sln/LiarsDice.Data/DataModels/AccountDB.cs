@@ -1,4 +1,5 @@
-﻿using LiarsDice.Data.Interfaces;
+﻿using LiarsDice.Data.Abstracts;
+using LiarsDice.Data.Interfaces;
 using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace LiarsDice.Data.DataModels
 {
-    public class AccountDB : SaveHelper
+    public class AccountDB : SaveHelper, GenericHelper
     {
         #region Constructor 
         public AccountDB() : this (new Account())
@@ -18,8 +19,8 @@ namespace LiarsDice.Data.DataModels
         }
         #endregion
         #region Props
-        public int CaseID { get { return 4; } }
-        public int PrimeKey { get; set; }
+        public string caseType { get { return "Account"; } }
+        public override sealed int PK { get; set; }
 
         public string Name;
         public string Email;

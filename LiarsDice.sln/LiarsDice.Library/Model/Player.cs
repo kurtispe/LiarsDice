@@ -28,6 +28,7 @@ namespace LiarsDice.Library.Model
             DieCount = numberOfDice;
             Name = name;
             MaxDie = maxDie;
+            Bet = new Bet();
         }
         #endregion
 
