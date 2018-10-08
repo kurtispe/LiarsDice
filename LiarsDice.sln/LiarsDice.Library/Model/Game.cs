@@ -32,7 +32,7 @@ namespace LiarsDice.Library.Model
         #region Functions
         public void AddPlayer(Player player)
         {
-            this.Competitors.Add(player);
+            this.Competitors.Add(player); //bleh
         }
         public void RemovePlayer(Player player)
         {
