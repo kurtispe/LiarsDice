@@ -1,4 +1,5 @@
-﻿using LiarsDice.Library.Interfaces;
+﻿using LiarsDice.Data.DataModels;
+using LiarsDice.Library.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 namespace LiarsDice.Library.Model
 {
    
-    public class Die 
+    public class Die : DieDB
     {
         #region Contructor
         public Die() : this(6)
@@ -29,9 +30,6 @@ namespace LiarsDice.Library.Model
 
         #region Props
         Random RNG;
-
-        public int Value { get; set; }
-        public int MaxDigit { get; set; }
         #endregion
 
         #region Functions
@@ -39,6 +37,10 @@ namespace LiarsDice.Library.Model
         {
             int rng = RNG.Next(1, MaxDigit);
             Value = rng;
+        }
+        public Die DeepCopy()
+        {
+            return new Die(MaxDigit, Value);
         }
         #endregion
     }

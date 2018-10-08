@@ -1,6 +1,6 @@
 ﻿using LiarsDice.Data.Abstracts;
 using LiarsDice.Data.Interfaces;
-using LiarsDice.Library.Model;
+//using LiarsDice.Library.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,15 +13,18 @@ namespace LiarsDice.Data.DataModels
         public GameDB() 
         {
         }
-        public GameDB(Game game)
-        {
-            CopyValues(game);
-        }
+        //public GameDB(Game game)
+        //{
+        //    CopyValues(game);
+        //}
         #endregion
 
         #region Props
+
+        #region Helpers
         public string caseType { get { return "Game"; } }
         public override sealed int PK { get; set; }
+        #endregion
 
         public List<PlayerDB> Competitors { get; set; }
         public float SafeNumber { get; set; }
@@ -32,32 +35,32 @@ namespace LiarsDice.Data.DataModels
         #endregion
 
         #region Function 
-        public void CopyValues(Game game)
-        {
-            game.CalculateStats();
+        //public void CopyValues(Game game)
+        //{
+        //    game.CalculateStats();
 
-            ActiveDie = game.ActiveDie;
-            SafeNumber = game.SafeNumber;
-            maxDieValue = game.maxDieValue;
-            numberOfDicePerPlayerAtStart = game.numberOfDicePerPlayerAtStart;
-            StatLog = game.StatLog;
-            foreach(Player p in game.Competitors)
-            {
-                 Competitors.Add(new PlayerDB(p));
-            }   
-        }
-        public Game ProduceReturnable()
-        {
-            Game game = new Game(numberOfDicePerPlayerAtStart, maxDieValue);
-            game.ActiveDie = ActiveDie;
-            game.SafeNumber = SafeNumber;
-            game.StatLog = StatLog;
-            foreach(PlayerDB play in Competitors)
-            {
-                game.Competitors.Add(play.ProduceReturnable());
-            }
-            return game;
-        }
+        //    ActiveDie = game.ActiveDie;
+        //    SafeNumber = game.SafeNumber;
+        //    maxDieValue = game.maxDieValue;
+        //    numberOfDicePerPlayerAtStart = game.numberOfDicePerPlayerAtStart;
+        //    StatLog = game.StatLog;
+        //    foreach(Player p in game.Competitors)
+        //    {
+        //         Competitors.Add(new PlayerDB(p));
+        //    }   
+        //}
+        //public Game ProduceReturnable()
+        //{
+        //    Game game = new Game(numberOfDicePerPlayerAtStart, maxDieValue);
+        //    game.ActiveDie = ActiveDie;
+        //    game.SafeNumber = SafeNumber;
+        //    game.StatLog = StatLog;
+        //    foreach(PlayerDB play in Competitors)
+        //    {
+        //        game.Competitors.Add(play.ProduceReturnable());
+        //    }
+        //    return game;
+        //}
         #endregion
     }
 }

@@ -1,11 +1,10 @@
-﻿using LiarsDice.Library.Interfaces;
-using System;
+﻿using LiarsDice.Data.DataModels;
+using LiarsDice.Library.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Player : Stats
+    public class Player : PlayerDB, Stats
     {
         #region Constructor
         public Player() : this("genericName")
@@ -28,18 +27,13 @@ namespace LiarsDice.Library.Model
             DieCount = numberOfDice;
             Name = name;
             MaxDie = maxDie;
-            Bet = new Bet();
         }
         #endregion
 
         #region Props
-        public string Name;
-        public int DieCount;
-        public int Score;
-        public int MaxDie;
-        public List<Die> Dice;
+        new public List<Die> Dice;
         protected int[] StatLog;
-        public Bet Bet { get; set; }
+
         #endregion
 
         #region Functions
@@ -54,14 +48,29 @@ namespace LiarsDice.Library.Model
                 n++;
             } while (n < DieCount);
         }
-
         public void PlaceBet(int w, int d) 
         {
             if (d >= Dice[0].MaxDigit)
             {
                 d = 1;
+                //should be an error tossed here
             }
-            Bet = new Bet(w,d);
+            Bet[0] = w;
+            Bet[1] = d;
+           
+        }
+        public Player DeepCopy()
+        {
+            Player copy = new Player();
+            copy.Bet = this.Bet;
+            copy.Dice = this.Dice; 
+            copy.DieCount = this.DieCount;
+            copy.MaxDie = this.MaxDie;
+            copy.Name = this.Name;
+            //copy.PK = this.PK;
+            copy.Score = this.Score;
+            copy.StatLog = this.StatLog;
+            return copy;
         }
 
         #region Stats

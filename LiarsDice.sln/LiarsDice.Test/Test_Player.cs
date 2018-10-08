@@ -45,12 +45,12 @@ namespace LiarsDice.Test
         {
             sut.RollDice();
             sut.PlaceBet(3, 4);
-            var exp = sut.Bet.Digit;
-            var exp2 = sut.Bet.Weight;
+            var exp = sut.Bet[0];
+            var exp2 = sut.Bet[1];
 
             Assert.True(exp >= 0 && exp < sut.Dice[0].MaxDigit);
             sut.PlaceBet(3, 99);
-            Assert.True(sut.Bet.Digit == 1);
+            Assert.True(sut.Bet[1] == 1);
         }
         [Fact]
         public void Test_Player_ReturnInfo()

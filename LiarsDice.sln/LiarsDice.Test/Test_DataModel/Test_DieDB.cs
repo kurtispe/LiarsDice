@@ -17,22 +17,22 @@ namespace LiarsDice.Test.Test_DataModel
         private DieDB sut;
         private Die die;
 
-        [Fact]
-        public void Test_DieDB_CopyValues()
-        {
-            die.Roll();
-            sut.CopyValues(die);
-            Assert.Equal(die.Value, sut.Value);
-            Assert.Equal(die.MaxDigit, sut.MaxDigit);
-        }
-        [Fact]
-        public void Test_DieDB_ProduceReturnable()
-        {
-            die.Roll();
-            sut.CopyValues(die);
-            Die produced = sut.ProduceReturnable();
-            Assert.Equal(die.Value, produced.Value);
-            Assert.Equal(die.MaxDigit, produced.MaxDigit);
-        }
+        //[Fact]
+        //public void Test_DieDB_CopyValues()
+        //{
+        //    die.Roll();
+        //    sut.CopyValues(die);
+        //    Assert.Equal(die.Value, sut.Value);
+        //    Assert.Equal(die.MaxDigit, sut.MaxDigit);
+        //}
+        //[Fact]
+        //public void Test_DieDB_ProduceReturnable()
+        //{
+        //    die.Roll();
+        //    sut.CopyValues(die);
+        //    Die produced = sut.ProduceReturnable();
+        //    Assert.Equal(die.Value, produced.Value);
+        //    Assert.Equal(die.MaxDigit, produced.MaxDigit);
+        //}
     }
 }

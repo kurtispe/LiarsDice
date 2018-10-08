@@ -1,12 +1,11 @@
-﻿using LiarsDice.Library.Interfaces;
+﻿using LiarsDice.Data.DataModels;
+using LiarsDice.Library.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Game : Stats
+    public class Game : GameDB, Stats
     {
         #region Constructor
         public Game() : this(6)
@@ -15,7 +14,6 @@ namespace LiarsDice.Library.Model
         public Game(int nod) :this(nod, 6)
         {
             numberOfDicePerPlayerAtStart = nod;
-           
         }
         public Game(int nod, int mdv)
         {
@@ -28,12 +26,7 @@ namespace LiarsDice.Library.Model
         #endregion
 
         #region Props
-        public List<Player> Competitors;
-        public int ActiveDie { get; set; }
-        public int maxDieValue { get; set; }
-        public int numberOfDicePerPlayerAtStart { get; set; }
-        public  int[] StatLog { get; set; }
-        public float SafeNumber { get; set; }
+        new public List<Player> Competitors;
         #endregion
 
         #region Functions
@@ -67,7 +60,18 @@ namespace LiarsDice.Library.Model
             Player player = new Player(name, numberOfDicePerPlayerAtStart, maxDieValue);
             return player;
         }
-
+        public Game DeepCopy()
+        {
+            var copy = new Game();
+            copy.ActiveDie = this.ActiveDie;
+            copy.Competitors = this.Competitors;
+            copy.maxDieValue = this.maxDieValue;
+            copy.numberOfDicePerPlayerAtStart = this.numberOfDicePerPlayerAtStart;
+            copy.SafeNumber = this.SafeNumber;
+            copy.StatLog = this.StatLog;
+            return copy;
+        }
+     
         #region Stats
         public void CalculateStats()
         {

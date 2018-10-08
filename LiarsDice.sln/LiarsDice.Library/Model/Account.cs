@@ -1,30 +1,33 @@
-﻿using LiarsDice.Library.Interfaces;
+﻿using LiarsDice.Data.DataModels;
+using LiarsDice.Library.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LiarsDice.Library.Model
 {
-    public class Account : Stats
+    public class Account : AccountDB, Stats
     {
         #region Constructor
         public Account() : this("genericName", "genericEmail@.com")
         {
            
         }
-        public Account(string name, string email)
+        public Account(string name, string email) : this (name, email, true)
         {
             Name = name;
             Email = email;
-            Visibility = true;
+        }
+        public Account(string name, string email, bool vis)
+        {
+            Name = name;
+            Email = email;
+            Visibility = vis;
         }
         #endregion
 
         #region Props
-
-        public readonly string Name;
-        public readonly string Email;
-        public bool Visibility;
+        #endregion
 
         #region Functions
         #region Stats
@@ -43,8 +46,11 @@ namespace LiarsDice.Library.Model
             throw new NotImplementedException();
         }
         #endregion
+        public Account DeepCopy()
+        {
+            return new Account(Name, Email, Visibility);
+        }
         #endregion
 
-        #endregion
     }
 }

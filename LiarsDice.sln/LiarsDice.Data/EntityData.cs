@@ -1,6 +1,5 @@
 ﻿
 using LiarsDice.Data.DataModels;
-using LiarsDice.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,36 +17,8 @@ namespace LiarsDice.Data
 
         private static CommonContext CTX;
         #endregion
-
+  
         #region Functions
-        #region Bet
-        public async void SaveBet(BetDB obj)
-        {
-            try
-            {
-                CTX.BetDB.Add(obj);
-                await CTX.SaveChangesAsync();
-            }
-            catch (ArgumentException)
-            {
-                CTX.BetDB.Update(obj);
-                await CTX.SaveChangesAsync();
-            }
-        }
-        public async Task<BetDB> FindBet(int pk)
-        {
-            return await CTX.BetDB.SingleOrDefaultAsync(n => n.PK == pk);
-        }
-        public async Task<List<BetDB>> FindAllBets()
-        {
-            return await CTX.BetDB.ToListAsync();
-        }
-        public async void DeleteOneBet(BetDB obj)
-        {
-            CTX.BetDB.Remove(obj);
-            await CTX.SaveChangesAsync();
-        }
-        #endregion
         #region Account
         public async void SaveAccount(AccountDB obj)
         {
