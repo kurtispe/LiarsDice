@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /LiarsDice.sln/LiarsDice.Data/jsconfig1.json
 /LiarsDice.sln/LiarsDice.BE/EntityData/jsonconfig.json
+/LiarsDice.sln/LiarsDice.BE/Data/jsonconfig.json

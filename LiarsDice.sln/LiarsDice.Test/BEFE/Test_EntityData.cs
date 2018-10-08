@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiarsDice.BE.Data;
+using LiarsDice.BE.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -7,15 +9,25 @@ namespace LiarsDice.Test.BEFE
 {
     public class Test_EntityData
     {
+        #region SetUp
+        public Test_EntityData()
+        {
+            sut = new EntityData(new MockDB());
+            player = new Player();
+        }
+        private EntityData sut;
+        private MockDB mock;
+        private Player player;
+        #endregion
         #region Test
-        //[Fact]
-        //public void Test_EntityData_Save_and_Read()
-        //{
-        //    playerDB.Name = "Karl";
-        //    sut.SavePlayer(playerDB);
-        //    var result = sut.FindPlayer(playerDB.PK).Result;
-        //    Assert.Equal("Karl", result.Name);
-        //}
+        [Fact]
+        public void Test_EntityData_Save_and_Read()
+        {
+            player.Name = "karl";
+            sut.SavePlayerAsync(player);
+            var result = sut.FindPlayerAsync(player.PK).Result;
+            Assert.Equal("karl", result.Name);
+        }
         //[Fact]
         //public void Test_EntityData_GetList()
         //{

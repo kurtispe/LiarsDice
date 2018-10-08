@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LiarsDice.FE
 {
-    public class GameFE
+    public abstract class GameFE
     {
         public List<PlayerFE> Competitors { get; set; }
         public float SafeNumber { get; set; }

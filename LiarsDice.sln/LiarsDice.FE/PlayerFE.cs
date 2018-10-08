@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LiarsDice.FE
 {
-    public class PlayerFE
+    public abstract class PlayerFE
     {
         #region Props
         public string Name { get; set; }

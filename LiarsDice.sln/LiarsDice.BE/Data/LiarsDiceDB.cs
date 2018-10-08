@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace LiarsDice.BE.EntityData
+namespace LiarsDice.BE.Data
 {
     public class LiarsDiceDB : CommonContext
     {
         public LiarsDiceDB() { }
 
-        private readonly string path = "C:/Users/kurti/Documents/MyVsProgram/LiarsDice/LiarsDice.sln/LiarsDice.BE/EntityData/jsonconfig.json";
+        private readonly string path = "C:/Users/kurti/Documents/MyVsProgram/LiarsDice/LiarsDice.sln/LiarsDice.BE/Data/jsonconfig.json";
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -20,5 +20,4 @@ namespace LiarsDice.BE.EntityData
             }
         }
     }
-
 }
