@@ -1,15 +1,34 @@
-﻿using LiarsDice.FE;
+﻿using LiarsDice.BE.Interfaces;
+using LiarsDice.FE;
 using System;
+using System.Collections.Generic;
 
 namespace LiarsDice.BE.DataModels
 {
-    public sealed class Game : GameFE
+    public sealed class Game : GameFE, Stats
     {
         #region Constructor
-
+        public Game() : this(6)
+        {
+        }
+        public Game(int nod) : this(nod, 6)
+        {
+            numberOfDicePerPlayerAtStart = nod;
+        }
+        public Game(int nod, int mdv)
+        {
+            maxDieValue = mdv;
+            StatLog = new int[mdv];
+            SafeNumber = 0.00F;
+            Competitors = new List<Player>();
+            numberOfDicePerPlayerAtStart = nod;
+        }
         #endregion
         #region DataProps
         public int PK { get; set; }
+        #endregion
+        #region Props
+        new public List<Player> Competitors;
         #endregion
         #region Functions
         public void AddPlayer(Player player)

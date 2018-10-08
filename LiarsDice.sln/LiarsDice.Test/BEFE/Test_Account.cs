@@ -11,17 +11,21 @@ namespace LiarsDice.Test.BEFE
         #region SetUp
         public Test_Account()
         {
-            sut = new Account();
+            sut = new Account() {
+                Name = "Karl",
+                Email = "Karl@email.com",
+                Visibility = true
+            };
         }
         private Account sut;
         #endregion
-
         #region Test
         [Fact]
         public void Test_Account_Props()
         {
             Assert.IsType<string>(sut.Email);
             Assert.IsType<string>(sut.Name);
+            Assert.IsType<bool>(sut.Visibility);
         }
         #endregion
 

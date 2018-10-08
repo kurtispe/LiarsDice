@@ -1,14 +1,39 @@
-﻿using LiarsDice.FE;
+﻿using LiarsDice.BE.Interfaces;
+using LiarsDice.FE;
+using System.Collections.Generic;
 
 namespace LiarsDice.BE.DataModels
 {
-    public sealed class Player : PlayerFE
+    public sealed class Player : PlayerFE, Stats
     {
         #region Constructor
-
+        public Player() : this("genericName")
+        {
+        }
+        public Player(string name) : this(name, 6)
+        {
+            Name = name;
+        }
+        public Player(string name, int numberOfDice) : this(name, numberOfDice, 6)
+        {
+            Name = name;
+            DieCount = numberOfDice;
+        }
+        public Player(string name, int numberOfDice, int maxDie)
+        {
+            Dice = new List<Die>();
+            Score = 0;
+            StatLog = new int[maxDie];
+            DieCount = numberOfDice;
+            Name = name;
+            MaxDie = maxDie;
+        }
         #endregion
         #region DataProps
         public int PK { get; set; }
+        #endregion
+        #region Props
+        new public List<Die> Dice { get; set; }
         #endregion
         #region Functions
         public void RollDice()

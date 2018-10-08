@@ -16,6 +16,12 @@ namespace LiarsDice.Test.BEFE
         #endregion
         #region Test
         [Fact]
+        public void Test_Die_Props()
+        {
+            Assert.IsType<int>(sut.MaxDigit);
+            Assert.IsType<int>(sut.Value);
+        }
+        [Fact]
         public void Test_Die_Roll()
         {
             var exp = 0;

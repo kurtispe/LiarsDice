@@ -25,6 +25,10 @@ namespace LiarsDice.Test.BEFE
         {
             Assert.IsType<int>(sut.ActiveDie);
             Assert.IsType<float>(sut.SafeNumber);
+            Assert.IsType<int>(sut.maxDieValue);
+            Assert.IsType<int>(sut.numberOfDicePerPlayerAtStart);
+            Assert.IsType<List<Player>>(sut.Competitors);
+            Assert.IsType<int[]>(sut.StatLog);
         }
         [Fact]
         public void Test_Game_AddPlayer()

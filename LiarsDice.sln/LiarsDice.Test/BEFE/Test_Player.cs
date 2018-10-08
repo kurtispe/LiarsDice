@@ -19,13 +19,14 @@ namespace LiarsDice.Test.BEFE
         [Fact]
         public void Test_Player_Props()
         {
-            var name = sut.Name;
-            var dice = sut.DieCount;
-
-            Assert.False(string.IsNullOrWhiteSpace(name));
-            Assert.IsType<int>(dice);
+            Assert.IsType<string>(sut.Name);
+            Assert.IsType<int>(sut.MaxDie);
+            Assert.IsType<int>(sut.DieCount);
+            Assert.IsType<int[]>(sut.Bet);
+            Assert.IsType<List<Die>>(sut.Dice);
+            Assert.IsType<int>(sut.Score);
+            Assert.IsType<int[]>(sut.StatLog);
         }
-
         [Fact]
         public void Test_Player_RollDice()
         {
