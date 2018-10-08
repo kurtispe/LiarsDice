@@ -11,7 +11,6 @@ namespace LiarsDice.Library.Model
         #region Constructor
         public Account() : this("genericName", "genericEmail@.com")
         {
-           
         }
         public Account(string name, string email) : this (name, email, true)
         {

@@ -26,7 +26,7 @@ namespace LiarsDice.Data.DataModels
         #endregion
 
         public int Value { get; set; }
-        public int MaxDigit;
+        public int MaxDigit { get; set; }
         #endregion
         #region Function 
         //public void CopyValues(Die die)

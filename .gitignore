@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /LiarsDice.sln/LiarsDice.Data/jsconfig1.json
+/LiarsDice.sln/LiarsDice.BE/EntityData/jsonconfig.json

@@ -1,26 +1,19 @@
-﻿using LiarsDice.Library.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace LiarsDice.Test
+namespace LiarsDice.Test.BEFE
 {
     public class Test_Player
     {
-        public Test_Player()
-        {
-            sut = new Player();
-        }
-
-        Player sut;
-
+        #region Test
         [Fact]
         public void Test_Player_Props()
         {
             var name = sut.Name;
             var dice = sut.DieCount;
-            
+
             Assert.False(string.IsNullOrWhiteSpace(name));
             Assert.IsType<int>(dice);
         }
@@ -30,9 +23,9 @@ namespace LiarsDice.Test
         {
             bool bit = false;
             sut.RollDice();
-            foreach(var die in sut.Dice)
+            foreach (var die in sut.Dice)
             {
-                if(die.Value == 0)
+                if (die.Value == 0)
                 {
                     bit = true;
                 }
@@ -57,5 +50,6 @@ namespace LiarsDice.Test
         {
             Assert.IsType<String>(sut.ReturnInfo());
         }
+        #endregion
     }
 }

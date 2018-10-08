@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Library", "LiarsDice.Library\LiarsDice.Library.csproj", "{05624F92-F644-4810-B953-773BC7720742}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Client", "LiarsDice.Client\LiarsDice.Client.csproj", "{B2DB589C-10C7-4662-B38D-5E03B714D50C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Test", "LiarsDice.Test\LiarsDice.Test.csproj", "{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiarsDice.API", "LiarsDice.API\LiarsDice.API.csproj", "{54C0E130-6BDA-4B80-A323-53C696C041F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.API", "LiarsDice.API\LiarsDice.API.csproj", "{54C0E130-6BDA-4B80-A323-53C696C041F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiarsDice.Data", "LiarsDice.Data\LiarsDice.Data.csproj", "{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Data", "LiarsDice.Data\LiarsDice.Data.csproj", "{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiarsDice.FE", "LiarsDice.FE\LiarsDice.FE.csproj", "{35EE0584-3A42-4DCE-9933-7428BC6401E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiarsDice.BE", "LiarsDice.BE\LiarsDice.BE.csproj", "{5E326E74-978B-4B0A-BE78-B1AE8F56DF53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,6 @@ Global
 		{05624F92-F644-4810-B953-773BC7720742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05624F92-F644-4810-B953-773BC7720742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05624F92-F644-4810-B953-773BC7720742}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2DB589C-10C7-4662-B38D-5E03B714D50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2DB589C-10C7-4662-B38D-5E03B714D50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2DB589C-10C7-4662-B38D-5E03B714D50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2DB589C-10C7-4662-B38D-5E03B714D50C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +37,14 @@ Global
 		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E326E74-978B-4B0A-BE78-B1AE8F56DF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E326E74-978B-4B0A-BE78-B1AE8F56DF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E326E74-978B-4B0A-BE78-B1AE8F56DF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E326E74-978B-4B0A-BE78-B1AE8F56DF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

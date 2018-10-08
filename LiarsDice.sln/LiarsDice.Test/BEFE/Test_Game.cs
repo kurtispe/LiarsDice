@@ -1,23 +1,13 @@
-﻿using LiarsDice.Library.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace LiarsDice.Test
+namespace LiarsDice.Test.BEFE
 {
     public class Test_Game
     {
-        public Test_Game()
-        {
-            sut = new Game();
-            player = new Player();
-            player2 = new Player("Greg");
-        }
-        private Game sut;
-        private Player player;
-        private Player player2;
-
+        #region Test
         [Fact]
         public void Test_Game_Props()
         {
@@ -59,5 +49,6 @@ namespace LiarsDice.Test
         {
             Assert.IsType<String>(sut.ReturnInfo());
         }
+        #endregion
     }
 }
