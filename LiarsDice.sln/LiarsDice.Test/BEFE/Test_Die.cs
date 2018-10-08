@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiarsDice.BE.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -7,6 +8,12 @@ namespace LiarsDice.Test.BEFE
 {
     public class Test_Die
     {
+        #region SetUP
+        public Test_Die(){
+            sut = new Die();
+        }
+        private Die sut;
+        #endregion
         #region Test
         [Fact]
         public void Test_Die_Roll()

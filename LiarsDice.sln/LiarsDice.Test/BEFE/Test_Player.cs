@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiarsDice.BE.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -7,6 +8,13 @@ namespace LiarsDice.Test.BEFE
 {
     public class Test_Player
     {
+        #region SetUp
+        public Test_Player()
+        {
+            sut = new Player();
+        }
+        private Player sut;
+        #endregion
         #region Test
         [Fact]
         public void Test_Player_Props()

@@ -7,9 +7,9 @@ namespace LiarsDice.FE
     public class AccountFE
     {
         #region Props
-        protected string Name { get; set; }
-        protected string Email { get; set; }
-        protected bool Visibility { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public bool Visibility { get; set; }
         #endregion
     }
 }
