@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Library", "LiarsDice.Library\LiarsDice.Library.csproj", "{05624F92-F644-4810-B953-773BC7720742}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Test", "LiarsDice.Test\LiarsDice.Test.csproj", "{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.API", "LiarsDice.API\LiarsDice.API.csproj", "{54C0E130-6BDA-4B80-A323-53C696C041F2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiarsDice.Data", "LiarsDice.Data\LiarsDice.Data.csproj", "{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiarsDice.FE", "LiarsDice.FE\LiarsDice.FE.csproj", "{35EE0584-3A42-4DCE-9933-7428BC6401E6}"
 EndProject
@@ -21,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{05624F92-F644-4810-B953-773BC7720742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05624F92-F644-4810-B953-773BC7720742}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05624F92-F644-4810-B953-773BC7720742}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05624F92-F644-4810-B953-773BC7720742}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4DB6C3B-68FA-4DFB-BEE7-936D6EA7876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,10 +25,6 @@ Global
 		{54C0E130-6BDA-4B80-A323-53C696C041F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54C0E130-6BDA-4B80-A323-53C696C041F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54C0E130-6BDA-4B80-A323-53C696C041F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F319DB8-DD50-45B5-91C5-48DD2D11EB18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35EE0584-3A42-4DCE-9933-7428BC6401E6}.Release|Any CPU.ActiveCfg = Release|Any CPU

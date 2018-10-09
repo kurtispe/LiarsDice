@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LiarsDice.BE.Data
-{
+{ 
     public class EntityData
     {
         #region Constructor

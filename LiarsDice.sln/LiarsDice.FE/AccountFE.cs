@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace LiarsDice.FE
 {
-    public abstract class AccountFE
+    public class AccountFE
     {
         #region Props
         public string Name { get; set; }

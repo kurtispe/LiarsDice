@@ -1,10 +1,11 @@
-﻿using LiarsDice.BE.Interfaces;
+﻿
+using LiarsDice.BE.Interfaces;
 using LiarsDice.FE;
 using System.Collections.Generic;
 
 namespace LiarsDice.BE.DataModels
 {
-    public sealed class Player : PlayerFE, Stats
+    public sealed class Player : Stats
     {
         #region Constructor
         public Player() : this("genericName")
@@ -28,20 +29,59 @@ namespace LiarsDice.BE.DataModels
             Name = name;
             MaxDie = maxDie;
         }
+        public Player(PlayerFE player)
+        {
+            Consumes(player);
+        }
         #endregion
         #region DataProps
         public int PK { get; set; }
         #endregion
         #region Props
-        new public List<Die> Dice { get; set; }
+        public List<Die> Dice { get; set; }
+        public string Name { get; set; }
+        public int DieCount { get; set; }
+        public int Score { get; set; }
+        public int MaxDie { get; set; }
+        public int[] Bet = new int[2];
+        public int[] StatLog;
         #endregion
         #region Functions
+        public void Consumes(PlayerFE play)
+        {
+            Name = play.Name;
+            DieCount = play.DieCount;
+            Score = play.Score;
+            MaxDie = play.MaxDie;
+            Bet = play.Bet;
+            StatLog = play.StatLog;
+            Dice = new List<Die>();
+            for(int n = 0; n < play.Dice.Count; n++)
+            {
+                Dice.Add(new Die(play.Dice[n]));
+            }
+        }
+        public PlayerFE Produces()
+        {
+            PlayerFE returnable = new PlayerFE();
+            returnable.Name = Name;
+            returnable.DieCount = DieCount;
+            returnable.Score = Score;
+            returnable.MaxDie = MaxDie;
+            returnable.Bet = Bet;
+            returnable.StatLog = StatLog;
+            for (int n = 0; n < Dice.Count; n++)
+            {
+                returnable.Dice.Add(Dice[n].Produces());
+            }
+            return returnable;
+        }
         public void RollDice()
         {
             int n = 0;
             do
             {
-                var die = new Die(MaxDie);/////////////////////////////////////////////////////////////////
+                var die = new Die(MaxDie); 
                 die.Roll();
                 Dice.Add(die);
                 n++;

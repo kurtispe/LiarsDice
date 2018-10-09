@@ -1,7 +1,5 @@
 ﻿using LiarsDice.BE.DataModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LiarsDice.FE;
 using Xunit;
 
 namespace LiarsDice.Test.BEFE
@@ -65,6 +63,24 @@ namespace LiarsDice.Test.BEFE
                 }
             }
             Assert.True(maxRoll == 20);
+        }
+        [Fact]
+        public void Test_Die_Produces()
+        {
+            DieFE FE = sut.Produces();
+            Assert.Equal(sut.Value, FE.Value);
+            Assert.Equal(sut.MaxDigit, FE.MaxDigit);
+        }
+        [Fact]
+        public void Test_Die_Consumes()
+        {
+            Die sutX = new Die(new DieFE()
+            {
+                Value = 9,
+                MaxDigit = 12
+            });
+            Assert.Equal(9, sutX.Value);
+            Assert.Equal(12, sutX.MaxDigit);
         }
         #endregion
     }

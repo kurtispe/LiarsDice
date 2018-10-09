@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace LiarsDice.BE.Data
+namespace LiarsDice.BE.Data 
 {
     public class LiarsDiceDB : CommonContext
     {

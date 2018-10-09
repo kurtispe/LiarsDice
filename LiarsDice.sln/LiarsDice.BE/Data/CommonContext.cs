@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LiarsDice.BE.Data
 {
-    public class CommonContext : DbContext
+    public class CommonContext : DbContext 
     {
         public DbSet<Player> Player { get; set; }
         public DbSet<Die> DieDB { get; set; }
@@ -13,13 +13,9 @@ namespace LiarsDice.BE.Data
         protected override void OnModelCreating(ModelBuilder modBuilder)
         {
             modBuilder.Entity<Player>().HasKey("PK");
-
             modBuilder.Entity<Game>().HasKey("PK");
-
             modBuilder.Entity<Die>().HasKey("PK");
-
             modBuilder.Entity<Account>().HasKey("PK");
         }
     }
-
 }

@@ -1,7 +1,7 @@
 ﻿using LiarsDice.BE.DataModels;
+using LiarsDice.FE;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace LiarsDice.Test.BEFE
@@ -64,6 +64,42 @@ namespace LiarsDice.Test.BEFE
         public void Test_Game_ReturnInfo()
         {
             Assert.IsType<String>(sut.ReturnInfo());
+        }
+        [Fact]
+        public void Test_Game_Produces()
+        {
+            sut.numberOfDicePerPlayerAtStart = 90;
+            sut.maxDieValue = 5;
+            sut.SafeNumber = 9;
+            sut.Competitors.Add(new Player() {Name = "WOAH", Dice = new List<Die>() {new Die(4,2)} });
+            GameFE sutX = sut.Produces();
+            Assert.Equal(sut.numberOfDicePerPlayerAtStart, sutX.numberOfDicePerPlayerAtStart);
+            Assert.Equal(sut.maxDieValue, sutX.maxDieValue);
+            Assert.Equal(sut.SafeNumber, sutX.SafeNumber);
+            Assert.Equal(sut.Competitors[0].Name, sutX.Competitors[0].Name);
+            Assert.Equal(sut.Competitors[0].Dice[0].Value, sutX.Competitors[0].Dice[0].Value);
+            Assert.Equal(sut.Competitors[0].Dice[0].MaxDigit, sutX.Competitors[0].Dice[0].MaxDigit);
+        }
+        [Fact]
+        public void Test_Game_Consumes()
+        {
+            GameFE game = new GameFE()
+            {
+                SafeNumber = 3,
+                StatLog = new int[3] {2,4,6},
+                Competitors = new List<PlayerFE>() {new PlayerFE(){
+                    Name = "WOAH",
+                    Dice = new List<DieFE>(){
+                        new DieFE(){Value = 4, MaxDigit =7}
+                        }
+                    }
+                }
+            };
+            sut.Consumes(game);
+            Assert.Equal(game.SafeNumber, sut.SafeNumber);
+            Assert.Equal(game.StatLog[1], sut.StatLog[1]);
+            Assert.Equal(game.Competitors[0].Name, sut.Competitors[0].Name);
+            Assert.Equal(game.Competitors[0].Dice[0].Value, sut.Competitors[0].Dice[0].Value);
         }
         #endregion
     }

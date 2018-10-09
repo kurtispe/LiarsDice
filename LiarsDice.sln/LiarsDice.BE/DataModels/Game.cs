@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LiarsDice.BE.DataModels
 {
-    public sealed class Game : GameFE, Stats
+    public sealed class Game : Stats
     {
         #region Constructor
         public Game() : this(6)
@@ -28,9 +28,40 @@ namespace LiarsDice.BE.DataModels
         public int PK { get; set; }
         #endregion
         #region Props
-        new public List<Player> Competitors;
+        public List<Player> Competitors;
+        public float SafeNumber { get; set; }
+        public int ActiveDie { get; set; }
+        public int maxDieValue { get; set; }
+        public int numberOfDicePerPlayerAtStart { get; set; }
+        public int[] StatLog;
         #endregion
         #region Functions
+        public void Consumes(GameFE game)
+        {
+            SafeNumber = game.SafeNumber;
+            ActiveDie = game.ActiveDie;
+            maxDieValue = game.maxDieValue;
+            numberOfDicePerPlayerAtStart = game.numberOfDicePerPlayerAtStart;
+            StatLog = game.StatLog;
+            for(int n = 0; n < game.Competitors.Count; n++)
+            {
+                Competitors.Add(new Player(game.Competitors[n]));
+            }
+        }
+        public GameFE Produces()
+        {
+            GameFE returnable = new GameFE();
+            returnable.ActiveDie = ActiveDie;
+            returnable.maxDieValue = maxDieValue;
+            returnable.numberOfDicePerPlayerAtStart = numberOfDicePerPlayerAtStart;
+            returnable.SafeNumber = SafeNumber;
+            returnable.StatLog = StatLog;
+            for (int n = 0; n < Competitors.Count; n++)
+            {
+                returnable.Competitors.Add(Competitors[n].Produces());
+            }
+            return returnable;
+        }
         public void AddPlayer(Player player)
         {
             this.Competitors.Add(player);

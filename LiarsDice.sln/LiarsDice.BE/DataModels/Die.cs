@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LiarsDice.BE.DataModels
 {
-    public sealed class Die : DieFE
+    public sealed class Die 
     {
         #region Constructor
         public Die() : this(6)
@@ -22,13 +22,34 @@ namespace LiarsDice.BE.DataModels
             RNG = new Random();
             MaxDigit = md;
         }
+        public Die(DieFE die)
+        {
+            Consumes(die);
+        }
         #endregion
         #region DataProps
         public int PK { get; set; }
+        #endregion
+        #region Props
+        public int Value { get; set; }
+        public int MaxDigit { get; set; }
         [NotMapped]
         Random RNG;
         #endregion
         #region Functions
+        public void Consumes(DieFE die)
+        {
+            Value = die.Value;
+            MaxDigit = die.MaxDigit;
+        }
+        public DieFE Produces()
+        {
+            return new DieFE
+            {
+                Value = Value,
+                MaxDigit = MaxDigit
+            };
+        }
         public void Roll()
         {
             int rng = RNG.Next(1, MaxDigit);
